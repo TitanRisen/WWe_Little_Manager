@@ -1,0 +1,9 @@
+ <% include header %>
+ 用户：<%= user %><h1 id = nini>  欢迎登录管理系统！</h1>
+ <% if(Is_admin){ %>
+ <tr><br>可以点击按钮审核信息</br></tr>
+  <a class="btn" href="/judge" >审核信息                           </a>
+<% } %>
+ <a class="btn" href="/logout">退出</a>
+ 
+ <% include footer %>

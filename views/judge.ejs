@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>审核系统</title>
+<style>
+.pos_right
+{
+position:relative;
+left:50px;
+
+}
+
+/*list css*/
+  .list{
+  	border:1px solid #0058a3;   /* 表格边框 */  
+    font-family:Arial;  
+    border-collapse:collapse;   /* 边框重叠 */  
+    background-color:#eaf5ff;   /* 表格背景色 */  
+    font-size:14px;  
+    width: 100%;
+    height:200px;
+  }	
+  .list caption{
+	padding-bottom:5px;  
+    font:bold 1.4em;  
+    text-align:left; 
+  }
+  .list td {
+	border:1px solid #0058a3;   /* 单元格边框 */  
+    text-align:left;  
+    padding-top:4px; padding-bottom:4px;  
+    padding-left:10px; padding-right:10px; 
+  }
+  .list th {
+	border:1px solid #0058a3;   /* 行名称边框 */  
+    background-color:#4bacff;   /* 行名称背景色 */  
+    color:#FFFFFF;              /* 行名称颜色 */  
+    font-weight:bold;  
+    padding-top:4px; padding-bottom:4px;  
+    padding-left:12px; padding-right:12px;  
+    text-align:center;  
+  }
+/*button css*/
+
+button {
+  width: 130px;
+  height: 40px;
+  background: linear-gradient(to bottom, #4eb5e5 0%,#389ed5 100%); /* W3C */
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  border-bottom: 4px solid #2b8bc6;
+  color: #fbfbfb;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+  font-size: 15px;
+  text-align: left;
+  text-indent: 5px;
+  box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2);
+  cursor: pointer;
+
+/* Just for presentation */  
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+button:active {
+  box-shadow: 0px 2px 0px 0px rgba(0,0,0,.2);
+  top: 1px;
+}
+
+button:after {
+  content: "";
+  width: 0;
+  height: 0;
+  display: block;
+  border-top: 20px solid #187dbc;
+  border-bottom: 20px solid #187dbc;
+  border-left: 16px solid transparent;
+  border-right: 20px solid #187dbc;
+  position: absolute;
+  opacity: 0.6; 
+  right: 0;
+  top: 0;
+  border-radius: 0 5px 5px 0;  
+}
+
+/* Button pointing left */
+
+.image{
+	width: 300px;
+	height: 200px;
+}
+
+
+
+
+
+	</style>
+</head>
+<body>
+
+<table class="list">
+<tr >
+	<th>OpnenId</th>
+	<th>图片</th>
+	<th>操作</th>
+</tr>
+
+<% 
+	var count = 0;
+	datas.forEach(function(data){ 
+		if(data.openid != _openid){
+ 		
+%>	
+<form method="POST">
+	<tr>
+		<!-- <td  >  <input type = "text" name = "openid" value="<%=data.openid %>"></td> -->
+		<td  style="width: 25%"><%=data.openid %></td>
+		<td  > <img class="image" src = '<%=data.photo %>'> </td> 
+
+		<td   style="width: 25%"> <button class="submit">通过审核</button><button class="failed" onclick="hide(this)" >否决审核 </button>
+		</td>
+	</tr>
+</form>
+<% count++; }}) %>
+</table>
+
+</body>
+<script type="text/javascript">
+	function hide(obj){
+		obj.parentNode.parentNode.style.display = 'none';
+	}
+
+</script>
+
+</html>
